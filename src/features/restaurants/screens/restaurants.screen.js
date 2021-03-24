@@ -1,7 +1,7 @@
 import React from "react";
 import { StatusBar, StyleSheet, Text, View, Platform } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantInfo } from "../components/restaurnt-info.component";
+import { RestaurantInfo } from "../components/restaurnt-info-card.component";
 
 const isAndroid = Platform.OS === "android";
 

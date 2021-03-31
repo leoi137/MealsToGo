@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import { FlatList } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import styled from "styled-components/native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -27,9 +27,8 @@ export const RestaurantsScreen = ({ navigation }) => {
   // Can use useContext given that RestaurantContextProvider (RCP) is wrapped over the whole screen
   // the RCP is the provider of the RestaurantContext
   // useContext gets the restaurant context given by the provider
-  const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  // console.log(restaurants);
-  console.log(navigation);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
+
   return (
     <SafeArea>
       {isLoading && (
@@ -43,9 +42,11 @@ export const RestaurantsScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           // console.log(item);
           return (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
+            <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </Pressable>
           );
         }}
         keyExtractor={(item) => item.name}

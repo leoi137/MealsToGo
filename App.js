@@ -20,6 +20,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
+// Build in icons that come with expo/vector-icons
 const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
@@ -37,6 +38,7 @@ const Map = () => (
   </SafeArea>
 );
 
+// Where does ({ size, color }) come from?
 const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICON[route.name];
   return {

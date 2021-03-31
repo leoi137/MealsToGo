@@ -8,7 +8,7 @@ import {
 } from "../../../services/location/location.context";
 
 const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
+  padding: ${(props) => props.theme.space[2]};
 `;
 
 export const Search = () => {
@@ -31,3 +31,7 @@ export const Search = () => {
     </SearchContainer>
   );
 };
+
+//Whenever the text changes onChangeText allows me to change the text value
+// to something other than the default searchKeyword which then allows me to submit
+// a new keyword when done

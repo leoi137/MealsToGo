@@ -23,12 +23,13 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 
-export const RestaurantScreen = () => {
+export const RestaurantsScreen = ({ navigation }) => {
   // Can use useContext given that RestaurantContextProvider (RCP) is wrapped over the whole screen
   // the RCP is the provider of the RestaurantContext
   // useContext gets the restaurant context given by the provider
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  // console.log(restaurantContext);
+  // console.log(restaurants);
+  console.log(navigation);
   return (
     <SafeArea>
       {isLoading && (

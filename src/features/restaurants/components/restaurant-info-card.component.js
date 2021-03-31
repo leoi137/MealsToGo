@@ -1,21 +1,21 @@
 import React from "react";
-// import styled from "styled-components/native";
-// import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
-import star from "../../../../assets/star";
-import open from "../../../../assets/open";
+
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typography/text.component";
+import star from "../../../../assets/star";
+import open from "../../../../assets/open";
+
 import {
-  Icon,
   RestaurantCard,
   RestaurantCardCover,
-  Address,
   Info,
-  Rating,
   Section,
   SectionEnd,
-} from "../../../features/restaurants/components/restaurant-info-card.styles";
+  Rating,
+  Icon,
+  Address,
+} from "./restaurant-info-card.styles";
 // import { fontSizes } from "../../../infrastructure/theme/fonts";
 
 // remember to set restaurant as an empty object
@@ -29,7 +29,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     ],
     address = "100 some random street",
     isOpenNow = true,
-    rating = 5,
+    rating = 4,
     isClosedTemporarily = true,
   } = restaurant;
 

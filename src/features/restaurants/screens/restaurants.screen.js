@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
-import { FlatList, Pressable } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
@@ -42,11 +42,17 @@ export const RestaurantsScreen = ({ navigation }) => {
         renderItem={({ item }) => {
           // console.log(item);
           return (
-            <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+            // Note how the individual RestaurantInfoCard is rendered within the TouchableOpacity
+            <TouchableOpacity
+              onPress={() =>
+                // "RestaurantDetail" is the path that we navigate to and restaurant is a prop with the (resturant) item
+                navigation.navigate("RestaurantDetail", { restaurant: item })
+              }
+            >
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name}

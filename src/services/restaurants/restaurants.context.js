@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useMemo } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { useContext } from "react/cjs/react.development";
 import { LocationContext } from "../location/location.context";
 import {
@@ -30,7 +30,7 @@ export const RestaurantsContextProvider = ({ children }) => {
           setIsLoading(false);
           setError(err);
         });
-    }, 2000);
+    }, 1000);
   };
   useEffect(() => {
     // Doing this converstion because location itself is an object and we want its components only

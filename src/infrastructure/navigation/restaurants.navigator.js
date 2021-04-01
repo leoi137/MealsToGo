@@ -1,22 +1,28 @@
 import React from "react";
-import { Text } from "react-native";
-
 // Instead of being tab based this will be stacked based
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { RestaurantsScreen } from "../../features/restaurants/screens/restaurants.screen";
+import { RestaurantDetailScreen } from "../../features/restaurants/screens/restaurant-detail.screen";
 
 const RestaurantStack = createStackNavigator();
 
+// Any components within the component field of RestaurantStack.Screen come with navigation prop.
 export const RestaurantsNavigator = () => {
   return (
-    <RestaurantStack.Navigator headerMode="none">
+    <RestaurantStack.Navigator
+      headerMode="none"
+      screenOptions={{ ...TransitionPresets.DefaultTransition }}
+    >
       <RestaurantStack.Screen
         name="Restaurants"
         component={RestaurantsScreen}
       />
       <RestaurantStack.Screen
         name="RestaurantDetail"
-        component={() => <Text>Restaurant Detail</Text>}
+        component={RestaurantDetailScreen}
       />
     </RestaurantStack.Navigator>
   );

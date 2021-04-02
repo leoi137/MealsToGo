@@ -11,7 +11,7 @@ export const LocationContextProvider = ({ children }) => {
 
   // Every time a new keyword is set, it calls the useEffect and requests a new location
   const onSearch = (searchKeyword) => {
-    console.log(searchKeyword);
+    // console.log(searchKeyword);
     setIsLoading(true);
     setKeyword(searchKeyword);
   };
@@ -25,7 +25,7 @@ export const LocationContextProvider = ({ children }) => {
       .then((result) => {
         setIsLoading(false);
         setLocation(result);
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => {
         setIsLoading(false);

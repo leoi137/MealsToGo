@@ -10,6 +10,16 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  // Was there someone previously authorized to login
+  firebase.auth().onAuthStateChanged((usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
+
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(email, password)
@@ -26,6 +36,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   // console.log(!!user);
 
   const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
     if (password !== repeatedPassword) {
       setError("Error: Passwords Don't Match");
       return;
@@ -44,6 +55,12 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  const onLogout = () => {
+    setUser(null);
+    // Clears the state
+    firebase.auth().signOut();
+  };
+
   // The user is an object of a registered user, we use !!user to get whether there is an object
   return (
     <AuthenticationContext.Provider
@@ -54,6 +71,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

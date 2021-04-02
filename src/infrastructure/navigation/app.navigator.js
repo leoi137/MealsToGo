@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-import { Text, Button } from "react-native";
-import { SafeArea } from "../../components/utility/safe-area.component";
+import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screen";
+import { SettingsNavigator } from "./settings.navigator";
 
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { RestaurantsContextProvider } from "../../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { FavoritesContextProvider } from "../../services/favorites/favorites.context";
@@ -19,17 +17,6 @@ const TAB_ICON = {
   Restaurants: "md-restaurant",
   Map: "md-map",
   Settings: "md-settings",
-};
-
-const Settings = () => {
-  const { onLogout } = useContext(AuthenticationContext);
-
-  return (
-    <SafeArea>
-      <Text>Settings</Text>
-      <Button title="logout" onPress={() => onLogout()} />
-    </SafeArea>
-  );
 };
 
 // Where does ({ size, color }) come from?
@@ -44,6 +31,7 @@ const createScreenOptions = ({ route }) => {
 
 // Mount favorites, location, and restaurants after logged in not
 // before otherwise all users have the same data saved.
+// Need SettingsNavigator and RestaurantNavigator cause each one will contain multiple views
 export const AppNavigator = () => (
   <FavoritesContextProvider>
     <LocationContextProvider>
@@ -57,7 +45,7 @@ export const AppNavigator = () => (
         >
           <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
           <Tab.Screen name="Map" component={MapScreen} />
-          <Tab.Screen name="Settings" component={Settings} />
+          <Tab.Screen name="Settings" component={SettingsNavigator} />
         </Tab.Navigator>
       </RestaurantsContextProvider>
     </LocationContextProvider>

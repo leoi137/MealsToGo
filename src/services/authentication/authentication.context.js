@@ -24,6 +24,26 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
   // console.log(user);
   // console.log(!!user);
+
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords Don't Match");
+      return;
+    }
+    // Adding then setUser because then we will login
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
+
   // The user is an object of a registered user, we use !!user to get whether there is an object
   return (
     <AuthenticationContext.Provider
@@ -33,6 +53,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        onRegister,
       }}
     >
       {children}

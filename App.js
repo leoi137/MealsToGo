@@ -53,19 +53,3 @@ export default function App() {
     </>
   );
 }
-
-// const [isAuthenticated, setIsAuthenticated] = useState(false);
-// useEffect(() => {
-//   setTimeout(() => {
-//     firebase
-//       .auth()
-//       .signInWithEmailAndPassword("mo@binni.io", "test123")
-//       .then((user) => {
-//         // console.log(user);
-//         setIsAuthenticated(true);
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//   }, 1000);
-// }, []);
